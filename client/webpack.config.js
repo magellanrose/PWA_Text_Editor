@@ -22,6 +22,24 @@ module.exports = () => {
         template: './index.html',
         title: 'Webpack 11'
       }),
+      new InjectManifest({
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js',
+      }),
+      new WebpackPwaManifest({
+        name: 'TextEditor_PWA',
+        short_name: 'TEPWA',
+        description: 'Notes and editing them online or offline',
+        background_color: 'lightgreen',
+        theme_color: 'blue',
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons')
+          },
+        ],
+      }),
     ],
 
     module: {
