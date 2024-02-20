@@ -15,14 +15,14 @@ const initdb = async () =>
 // TODO: Add logic to a method that accepts some content and adds it to the database
 export const putDb = async (content) => {
   try {
-    const textEditDb = await openDB('jate', 1);
-    const txt = textEditDb.transaction('jate', 'readwrite');
-    const storeTxt = txt.objectStore('jate');
-    const request = storeTxt.put({
+    const editTextDb = await openDB('jate', 1);
+    const text = editTextDb.transaction('jate', 'readwrite');
+    const storeText = text.objectStore('jate');
+    const requestTxt = storeText.put({
       value: content,
       id: 1
     })
-    const output = await request;
+    const output = await requestTxt;
     console.log('Data added to DB', output)
   } catch (error) {
     console.error('putDb not implemented')
@@ -32,15 +32,15 @@ export const putDb = async (content) => {
 // TODO: Add logic for a method that gets all the content from the database
 export const getDb = async () => {
   try {
-    const textEditDb = await openDB('jate', 1);
-    const txt = textEditDb.transaction('jate', 'readonly');
-    const storeTxt = txt.objectStore('jate');
-    const request = storeTxt.get(1);
-    const output = await request;
+    const editTextDb = await openDB('jate', 1);
+    const text = editTextDb.transaction('jate', 'readonly');
+    const storeText = text.objectStore('jate');
+    const requestTxt = storeText.get(1);
+    const output = await requestTxt;
     console.log('output.value', output)
     return output?.value;
-  } catch (error) {
-    console.error('getDb not implemented')
+  } catch (err) {
+    console.err('getDb not implemented')
   }
 };
 
